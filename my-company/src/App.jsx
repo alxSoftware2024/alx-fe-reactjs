@@ -2,22 +2,17 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Home from './componet/Home'
-import Contact from './componet/Contact'
-import About from './componet/About'
-import Services from './componet/Services'
+import Home from './componets/Home'
+import Contact from './componets/Contact'
+import About from './componets/About'
+import Services from './componets/Services'
+import Navbar from './componets/Navbar'
 import {BrowserRouter as Router,Routes,Route,Link}from 'react-router-dom'
 function App() {
 
   return (
     <Router>
-      <nav>
-<Link to='/'>Home</Link>
-<Link to='/About'>About Us</Link>
-<Link to='/Contact'>Contact Us</Link>
-<Link to='/Services'>Services</Link>
-
-      </nav>
+       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/Contact' element={<Contact/>}/>
