@@ -1,19 +1,23 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import { UserProvider } from './UserContext'
-import ProfilePage from '..ProfilePage/ProfilePage'
 import './App.css'
-export const data=React.createContext();
-function App() {
-  const userData = { name: "Jane Doe", email: "jane.doe@example.com" }
-  
-  return (
-    <data.Provider value={userData}>
-<ProfilePage/>
-    </data.Provider>
-    
-  )
-}
+import React, { useState } from 'react';
+import UserContext from './UserContext';  // Import the UserContext
+import ProfilePage from './ProfilePage';
 
-export default App
+const App = () => {
+  // Example user data (you can replace this with actual data or a state hook)
+  const [userData, setUserData] = useState({
+    name: 'John Doe',
+    age: 30,
+    email: 'john.doe@example.com',
+  });
+
+  return (
+    <UserContext.Provider value={userData}>  {/* Provide the context */}
+      <ProfilePage />
+    </UserContext.Provider>
+  );
+};
+
+export default App;

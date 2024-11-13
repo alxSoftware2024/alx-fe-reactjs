@@ -1,7 +1,14 @@
-import UserInfo from './UserInfo';
+// ProfilePage.jsx
+import React from 'react';
+import UserDetails from './UserDetails';
 
-function ProfilePage(){
-  return <UserInfo />;
-}
+const ProfilePage = () => {
+  return (
+    <div>
+      <h1>Profile Page</h1>
+      <UserDetails />  {/* No need to pass userData anymore */}
+    </div>
+  );
+};
 
 export default ProfilePage;
