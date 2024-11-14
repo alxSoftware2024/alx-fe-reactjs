@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import UserContext from './UserContext';  // Import the UserContext
+import UserContext from './componet/UserContext';  // Import the UserContext
 
 const UserDetails = () => {
   const userData = useContext(UserContext);  // Consume the context
