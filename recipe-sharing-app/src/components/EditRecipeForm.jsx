@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useRecipeStore } from './recipeStore';
+import { useRecipeStore } from '../recipeStore';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const EditRecipeForm = () => {
-  const { recipeId } = useParams();
+  const { recipeId } = useParams();  // Get the recipeId from the URL
   const recipe = useRecipeStore((state) =>
     state.recipes.find((recipe) => recipe.id === recipeId)
   );
-  const editRecipe = useRecipeStore((state) => state.editRecipe);
+  const updateRecipe = useRecipeStore((state) => state.updateRecipe);  // Get updateRecipe from store
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  // When the component mounts, set initial form values from the existing recipe
   useEffect(() => {
     if (recipe) {
       setTitle(recipe.title);
@@ -20,11 +21,12 @@ const EditRecipeForm = () => {
     }
   }, [recipe]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // Handle form submission to update the recipe
+  const handleSubmit = (event) => {
+    event.preventDefault();  // Prevent the default form submission (which causes page reload)
     if (recipe) {
-      editRecipe(recipeId, { title, description });
-      navigate(`/recipe/${recipeId}`); // Navigate back to the recipe details page
+      updateRecipe(recipeId, { title, description });  // Use updateRecipe to update the recipe
+      navigate(`/recipe/${recipeId}`);  // Navigate back to recipe details page
     }
   };
 
