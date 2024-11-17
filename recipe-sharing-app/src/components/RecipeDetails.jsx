@@ -1,5 +1,7 @@
  // RecipeDetails component
  import { useRecipeStore } from './recipeStore';
+ import EditRecipeForm from './EditRecipeForm';
+import DeleteRecipeButton from './DeleteRecipeButton';
  import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom'
  const RecipeDetails = ({ recipeId }) => {
    const recipe = useRecipeStore(state =>
@@ -25,3 +27,4 @@
      </div>
    );
  };
+ export default RecipeDetails
