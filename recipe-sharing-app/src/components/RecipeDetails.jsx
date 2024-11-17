@@ -13,7 +13,7 @@ import DeleteRecipeButton from './DeleteRecipeButton';
        <h1>{recipe.title}</h1>
        <p>{recipe.description}</p>
        {/* Render EditRecipeForm and DeleteRecipeButton here */}
-       <Router>
+       {/* <Router>
        <nav>
             <Link to='/EditRecipeForm'>EditRecipeForm</Link>
             <Link to='/DeleteRecipeButton'>DeleteRecipeButton</Link>
@@ -23,7 +23,7 @@ import DeleteRecipeButton from './DeleteRecipeButton';
         <Route path='/DeleteRecipeButton' element={<DeleteRecipeButton/>}/>
 
         </Routes>
-       </Router>
+       </Router> */}
      </div>
    );
  };
