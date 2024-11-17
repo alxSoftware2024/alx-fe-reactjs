@@ -3,6 +3,8 @@ export const useRecipeStore = create(set => ({
   recipes: [],
   addRecipe: (newRecipe) => set(state => ({ recipes: [...state.recipes, newRecipe] })),
   setRecipes: (recipes) => set({ recipes }),
+  searchTerm: '',  // Initialize searchTerm state
+  setSearchTerm: (term) => set({ searchTerm: term }), // Function to update searchTerm
   updateRecipe: (id, updatedRecipe) =>
     set((state) => ({
       recipes: state.recipes.map((recipe) =>
