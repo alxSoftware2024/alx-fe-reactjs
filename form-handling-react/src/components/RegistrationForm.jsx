@@ -12,9 +12,9 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     // Simple validation to check if any field is empty
-    if (!username) {
-      setError('UserName fields are required');
-    }
+    // if (!username) {
+    //   setError('UserName fields are required');
+    // }
     if(!email){
       setError('Email fields are required');
 
