@@ -9,15 +9,20 @@ const RegistrationForm = () => {
 
   // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault();
+    //e.preventDefault();
 
     // Simple validation to check if any field is empty
     // if (!username) {
     //   setError('UserName fields are required');
     // }
-    if(!email)  
-    if(!password)
+    if(!email)  {
      setError('Password fields are required');
+
+    }
+    if(!password){
+           setError('Password fields are required');
+
+    }
 
      
     
