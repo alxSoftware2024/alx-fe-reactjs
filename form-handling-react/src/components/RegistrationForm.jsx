@@ -6,15 +6,7 @@ const RegistrationForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-if(!email){
-setError('Email fields are required');
-    }
-      
-    if(!password)
-     {
-         setError('Password fields are required');
 
-     }
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +15,11 @@ setError('Email fields are required');
     // if (!username) {
     //   setError('UserName fields are required');
     // }
-    
+    if(!email)  
+    if(!password)
+     setError('Password fields are required');
+
+     
     
     //  else {
     //   setError('');
