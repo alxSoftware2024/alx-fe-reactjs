@@ -12,9 +12,18 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     // Simple validation to check if any field is empty
-    if (!username || !email || !password) {
-      setError('All fields are required');
-    } else {
+    if (!username) {
+      setError('UserName fields are required');
+    }
+    if(!email){
+      setError('Email fields are required');
+
+    }
+    if(!password){
+      setError('Password fields are required');
+
+    }
+     else {
       setError('');
       // Form submission logic here (like sending data to an API)
       console.log('Form submitted:', { username, email, password });
