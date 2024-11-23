@@ -6,6 +6,7 @@ const RegistrationForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setErrors] = useState('');
+  const iff= ["if (!email)", "if (!password)"];
   if(!email)  {
     setErrors('Password fields are required');
 
