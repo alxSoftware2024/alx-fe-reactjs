@@ -15,19 +15,17 @@ const RegistrationForm = () => {
     // if (!username) {
     //   setError('UserName fields are required');
     // }
-    if(!email){
+    if(!email)
       setError('Email fields are required');
-
-    }
-    if(!password){
+    if(!password)
       setError('Password fields are required');
 
-    }
-     else {
-      setError('');
-      // Form submission logic here (like sending data to an API)
-      console.log('Form submitted:', { username, email, password });
-    }
+    
+    //  else {
+    //   setError('');
+    //   // Form submission logic here (like sending data to an API)
+    //   console.log('Form submitted:', { username, email, password });
+    // }
   };
 
   return (
