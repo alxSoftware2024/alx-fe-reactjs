@@ -41,7 +41,7 @@ function TodoItem({ todo, onToggle, onDelete }) {
 }
 
 // TodoList Component
-export default function TodoList() {
+ function TodoList() {
   const [todos, setTodos] = useState([
     { id: 1, text: 'Learn React', completed: false },
     { id: 2, text: 'Build a todo app', completed: false },
@@ -79,3 +79,4 @@ export default function TodoList() {
     </div>
   );
 }
+export default TodoList;
