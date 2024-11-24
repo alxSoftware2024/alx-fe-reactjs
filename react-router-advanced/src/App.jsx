@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/Profile"
+        <Route path="/profile"
           element={<ProtectedRoute element={<Profile />} />}/>
         {/* Define the dynamic route for blog posts */}
         <Route path="/blog/:id" element={<BlogPost />} />
