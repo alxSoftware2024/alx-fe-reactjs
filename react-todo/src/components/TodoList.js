@@ -73,6 +73,7 @@ function TodoItem({ todo, onToggle, onDelete }) {
             todo={todo}
             onToggle={toggleTodo}
             onDelete={deleteTodo}
+            //Toggle
           />
         ))}
       </ul>
