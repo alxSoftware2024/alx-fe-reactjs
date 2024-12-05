@@ -5,13 +5,13 @@ const AddRecipeForm = () => {
   // State to hold form values
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
-  const [instructions, setInstructions] = useState('');
-  
+  const [steps, setSteps] = useState(''); // Changed instructions to steps
+
   // State to handle validation errors
   const [errors, setErrors] = useState({
     title: '',
     ingredients: '',
-    instructions: ''
+    steps: '' // Changed instructions to steps
   });
 
   // Handle form submission
@@ -22,12 +22,12 @@ const AddRecipeForm = () => {
     let formErrors = {
       title: '',
       ingredients: '',
-      instructions: ''
+      steps: '' // Changed instructions to steps
     };
 
     if (!title) formErrors.title = 'Title is required';
     if (!ingredients) formErrors.ingredients = 'Ingredients are required';
-    if (!instructions) formErrors.instructions = 'Instructions are required';
+    if (!steps) formErrors.steps = 'Steps are required'; // Changed instructions to steps
     if (ingredients && ingredients.split('\n').length < 2) {
       formErrors.ingredients = 'Please provide at least two ingredients';
     }
@@ -35,14 +35,14 @@ const AddRecipeForm = () => {
     setErrors(formErrors);
 
     // If no errors, submit the form data (you can implement the actual submission logic)
-    if (!formErrors.title && !formErrors.ingredients && !formErrors.instructions) {
+    if (!formErrors.title && !formErrors.ingredients && !formErrors.steps) {
       // Submit logic here (e.g., API call to save the recipe)
-      console.log('Form submitted with:', { title, ingredients, instructions });
-      
+      console.log('Form submitted with:', { title, ingredients, steps });
+
       // Reset form fields after successful submission
       setTitle('');
       setIngredients('');
-      setInstructions('');
+      setSteps('');
     }
   };
 
@@ -80,18 +80,18 @@ const AddRecipeForm = () => {
             {errors.ingredients && <p className="text-red-500 text-xs mt-1">{errors.ingredients}</p>}
           </div>
 
-          {/* Instructions Field */}
+          {/* Steps Field */}
           <div className="mb-6">
-            <label htmlFor="instructions" className="block text-gray-700 text-sm font-semibold mb-2">Instructions</label>
+            <label htmlFor="steps" className="block text-gray-700 text-sm font-semibold mb-2">Preparation Steps</label>
             <textarea
-              id="instructions"
-              value={instructions}
-              onChange={(e) => setInstructions(e.target.value)}
+              id="steps"
+              value={steps}
+              onChange={(e) => setSteps(e.target.value)}
               rows="6"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter the preparation instructions"
+              placeholder="Enter the preparation steps"
             ></textarea>
-            {errors.instructions && <p className="text-red-500 text-xs mt-1">{errors.instructions}</p>}
+            {errors.steps && <p className="text-red-500 text-xs mt-1">{errors.steps}</p>}
           </div>
 
           {/* Submit Button */}
