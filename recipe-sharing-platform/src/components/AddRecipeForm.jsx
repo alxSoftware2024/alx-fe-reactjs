@@ -14,24 +14,40 @@ const AddRecipeForm = () => {
     steps: '' // Changed instructions to steps
   });
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Basic validation checks
+  // Validation function
+  const validate = () => {
     let formErrors = {
       title: '',
       ingredients: '',
       steps: '' // Changed instructions to steps
     };
 
+    // Check if title is empty
     if (!title) formErrors.title = 'Title is required';
+
+    // Check if ingredients are empty
     if (!ingredients) formErrors.ingredients = 'Ingredients are required';
-    if (!steps) formErrors.steps = 'Steps are required'; // Changed instructions to steps
+    
+    // Check if there are at least two ingredients
     if (ingredients && ingredients.split('\n').length < 2) {
       formErrors.ingredients = 'Please provide at least two ingredients';
     }
 
+    // Check if steps are empty
+    if (!steps) formErrors.steps = 'Steps are required'; // Changed instructions to steps
+
+    // Return the errors object
+    return formErrors;
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Run validation
+    const formErrors = validate();
+    
+    // Set errors if there are any
     setErrors(formErrors);
 
     // If no errors, submit the form data (you can implement the actual submission logic)
