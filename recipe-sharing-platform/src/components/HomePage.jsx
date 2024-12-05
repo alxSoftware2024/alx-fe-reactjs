@@ -1,6 +1,7 @@
-// src/components/HomePage.js
+// src/components/HomePage.jsx
 
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 // Import the mock data from data.json file
 import recipeData from '../data.json';
