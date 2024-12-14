@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fetchUserData } from './services/githubService';
+import { fetchUserData } from '../services/githubService';
 
 const Search = () => {
   const [username, setUsername] = useState('');
@@ -7,10 +7,12 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // Handle input change
   const handleInputChange = (e) => {
     setUsername(e.target.value);
   };
 
+  // Handle form submission to fetch user data
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     if (!username) return;
@@ -46,9 +48,10 @@ const Search = () => {
 
       {userData && !loading && !error && (
         <div>
-          <h2>{userData.name}</h2>
-          <img src={userData.avatar_url} alt={userData.name} width={100} />
-          <p>{userData.bio}</p>
+          <h2>{userData.name || 'No Name Available'}</h2>
+          <p><strong>Username (login):</strong> {userData.login}</p>
+          <img src={userData.avatar_url} alt={userData.name || 'GitHub Avatar'} width={100} />
+          <p>{userData.bio || 'No bio available'}</p>
           <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
             View GitHub Profile
           </a>
