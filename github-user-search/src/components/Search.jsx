@@ -26,7 +26,7 @@ const Search = () => {
       setUserData(data);
     } catch (err) {
       // If there's an error, set a specific error message
-      setError("Looks like we can't find the user");
+      setError("Looks like we cant find the user");
     } finally {
       setLoading(false);
     }
