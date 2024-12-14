@@ -6,6 +6,7 @@ const Search = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [seterro11, setError1] = useState('');
 
   // Handle input change
   const handleInputChange = (e) => {
@@ -26,11 +27,14 @@ const Search = () => {
       setUserData(data);
     } catch (err) {
       // If there's an error, set a specific error message
-      setError();
+            // If there's an error, set a specific error message
+
+      setError("Looks like we cant find the user");
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <div>
