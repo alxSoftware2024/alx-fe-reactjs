@@ -18,13 +18,14 @@ const Search = () => {
     if (!username) return;
 
     setLoading(true);
-    setError('');
-    setUserData(null);
+    setError('');  // Reset any previous errors
+    setUserData(null); // Reset previous user data
 
     try {
       const data = await fetchUserData(username);
       setUserData(data);
     } catch (err) {
+      // If there's an error, set a specific error message
       setError("Looks like we can't find the user");
     } finally {
       setLoading(false);
@@ -44,12 +45,12 @@ const Search = () => {
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-
+      {error && <p>{error}</p>}  {/* Display error message here if any */}
+      
       {userData && !loading && !error && (
         <div>
           <h2>{userData.name || 'No Name Available'}</h2>
-          <p><strong>Username (login):</strong> {userData.login}</p>
+          <p><strong>Username (login):</strong> {userData.login}</p> {/* Display the GitHub username */}
           <img src={userData.avatar_url} alt={userData.name || 'GitHub Avatar'} width={100} />
           <p>{userData.bio || 'No bio available'}</p>
           <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
