@@ -3,109 +3,60 @@ import { fetchUserData } from '../services/githubService';
 
 const Search = () => {
   const [username, setUsername] = useState('');
-  const [location, setLocation] = useState('');
-  const [minRepos, setMinRepos] = useState('');
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [page, setPage] = useState(1);
 
+  // Handle input change
   const handleInputChange = (e) => {
-    if (e.target.name === 'username') {
-      setUsername(e.target.value);
-    } else if (e.target.name === 'location') {
-      setLocation(e.target.value);
-    } else if (e.target.name === 'minRepos') {
-      setMinRepos(e.target.value);
-    }
+    setUsername(e.target.value);
   };
 
+  // Handle form submission to fetch user data
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
+    if (!username) return;
+
     setLoading(true);
-    setError('');
-    setUserData([]);
-    
+    setError('');  // Reset any previous errors
+    setUserData(null); // Reset previous user data
+
     try {
-      const data = await fetchUserData(username, location, minRepos, page);
-      setUserData(data.items);
+      const data = await fetchUserData(username);
+      setUserData(data);
     } catch (err) {
-      setError("Looks like we can't find any users matching that criteria");
+      // If there's an error, set a specific error message
+      setError();
     } finally {
       setLoading(false);
     }
   };
 
-  const handleLoadMore = async () => {
-    setPage(page + 1);
-    await handleSearchSubmit();
-  };
-
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <form className="space-y-4" onSubmit={handleSearchSubmit}>
-        <div>
-          <input
-            type="text"
-            name="username"
-            placeholder="Enter GitHub username"
-            value={username}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            name="location"
-            placeholder="Location (optional)"
-            value={location}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div>
-          <input
-            type="number"
-            name="minRepos"
-            placeholder="Minimum repositories"
-            value={minRepos}
-            onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded">
-          Search
-        </button>
+    <div>
+      <form onSubmit={handleSearchSubmit}>
+        <input
+          type="text"
+          placeholder="Enter GitHub username"
+          value={username}
+          onChange={handleInputChange}
+        />
+        <button type="submit">Search</button>
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-
-      <div className="space-y-4 mt-4">
-        {userData.map((user) => (
-          <div key={user.id} className="border p-4 rounded shadow-md">
-            <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
-            <h2 className="font-bold">{user.login}</h2>
-            <p>{user.name}</p>
-            <p>{user.location || 'Location not available'}</p>
-            <p>{user.public_repos} Repositories</p>
-            <a
-              href={user.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500"
-            >
-              View GitHub Profile
-            </a>
-          </div>
-        ))}
-      </div>
-
-      {userData.length > 0 && (
-        <button onClick={handleLoadMore} className="mt-4 p-2 bg-blue-500 text-white rounded">
-          Load More
-        </button>
+      {error && <p>{error}</p>}  {/* Display error message here if any */}
+      
+      {userData && !loading && !error && (
+        <div>
+          <h2>{userData.name || 'No Name Available'}</h2>
+          <p><strong>Username (login):</strong> {userData.login}</p> {/* Display the GitHub username */}
+          <img src={userData.avatar_url} alt={userData.name || 'GitHub Avatar'} width={100} />
+          <p>{userData.bio || 'No bio available'}</p>
+          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+            View GitHub Profile
+          </a>
+        </div>
       )}
     </div>
   );
